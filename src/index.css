@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 31 100% 98%;
+    --foreground: 18 21% 14%;
+
+    --card: 30 80% 99%;
+    --card-foreground: 18 21% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 20% 15%;
+
+    --primary: 24 93% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 34 76% 93%;
+    --secondary-foreground: 22 54% 27%;
+
+    --muted: 30 32% 95%;
+    --muted-foreground: 20 10% 46%;
+
+    --accent: 14 82% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 36% 87%;
+    --input: 30 36% 87%;
+    --ring: 25 95% 53%;
+
+    --radius: 0.95rem;
+
+    --sidebar-background: 33 100% 98%;
+    --sidebar-foreground: 20 20% 15%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 80% 92%;
+    --sidebar-accent-foreground: 20 60% 30%;
+    --sidebar-border: 30 30% 88%;
+    --sidebar-ring: 25 95% 53%;
+
+    /* Custom tokens */
+    --coral-glow: 24 100% 61%;
+    --coral-deep: 16 85% 40%;
+    --warm-bg: 33 100% 97%;
+    --warm-surface: 30 60% 99%;
+    --sky-soft: 207 82% 95%;
+  }
+
+  .dark {
+    --background: 20 20% 8%;
+    --foreground: 30 30% 95%;
+    --card: 20 20% 10%;
+    --card-foreground: 30 30% 95%;
+    --popover: 20 20% 10%;
+    --popover-foreground: 30 30% 95%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 20 20% 15%;
+    --secondary-foreground: 30 30% 95%;
+    --muted: 20 20% 15%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 16 85% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 20% 18%;
+    --input: 20 20% 18%;
+    --ring: 25 95% 53%;
+    --sidebar-background: 20 20% 8%;
+    --sidebar-foreground: 30 30% 95%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 20% 15%;
+    --sidebar-accent-foreground: 30 30% 95%;
+    --sidebar-border: 20 20% 18%;
+    --sidebar-ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-image:
+      radial-gradient(circle at 8% -10%, hsl(28 100% 90% / 0.6), transparent 35%),
+      radial-gradient(circle at 98% 0%, hsl(206 90% 90% / 0.45), transparent 40%),
+      linear-gradient(180deg, hsl(31 100% 98%) 0%, hsl(32 90% 97%) 100%);
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: hsl(25 95% 53% / 0.24);
+    color: hsl(16 38% 16%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer utilities {
+  .app-shell {
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+  }
+
+  .app-shell::before,
+  .app-shell::after {
+    content: "";
+    position: fixed;
+    z-index: -2;
+    border-radius: 9999px;
+    filter: blur(74px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .app-shell::before {
+    top: -8rem;
+    left: -7rem;
+    width: 24rem;
+    height: 24rem;
+    background: radial-gradient(circle at 40% 40%, hsl(28 100% 64%), hsl(16 85% 46%));
+  }
+
+  .app-shell::after {
+    right: -8rem;
+    bottom: -9rem;
+    width: 25rem;
+    height: 25rem;
+    background: radial-gradient(circle at 50% 50%, hsl(205 92% 84%), hsl(186 76% 72%));
+  }
+
+  .spark-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(hsl(22 80% 48% / 0.08) 0.55px, transparent 0.55px),
+      radial-gradient(hsl(204 80% 58% / 0.06) 0.45px, transparent 0.45px);
+    background-size: 22px 22px, 28px 28px;
+    background-position: 0 0, 12px 10px;
+    -webkit-mask-image: linear-gradient(180deg, black 0%, black 74%, transparent 100%);
+    mask-image: linear-gradient(180deg, black 0%, black 74%, transparent 100%);
+  }
+
+  .neo-panel {
+    background: linear-gradient(165deg, hsl(0 0% 100% / 0.94) 0%, hsl(33 85% 97% / 0.95) 100%);
+    border: 1px solid hsl(30 56% 87% / 0.75);
+    box-shadow:
+      0 16px 35px hsl(23 70% 50% / 0.12),
+      0 1px 0 hsl(0 0% 100% / 0.9) inset;
+  }
+
+  .neo-panel-strong {
+    background: linear-gradient(145deg, hsl(22 100% 57%) 0%, hsl(31 94% 58%) 60%, hsl(42 90% 57%) 100%);
+    box-shadow: 0 20px 42px hsl(26 84% 44% / 0.3);
+  }
+
+  .chip-soft {
+    border: 1px solid hsl(26 68% 82% / 0.9);
+    background: hsl(0 0% 100% / 0.75);
+    color: hsl(18 30% 35%);
+  }
+
+  .hover-pop {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .hover-pop:hover {
+    transform: translateY(-7px) scale(1.005);
+    border-color: hsl(25 92% 64% / 0.68);
+    box-shadow: 0 18px 34px hsl(22 72% 45% / 0.2);
+  }
+
+  .magnetic-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .magnetic-line::after {
+    content: "";
+    position: absolute;
+    left: -45%;
+    bottom: 0;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(24 95% 58%), transparent);
+    transition: left 280ms ease;
+  }
+
+  .magnetic-line:hover::after {
+    left: 102%;
+  }
+
+  .gradient-coral {
+    background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(16 85% 40%) 100%);
+  }
+  .gradient-warm {
+    background: linear-gradient(135deg, hsl(33 100% 97%) 0%, hsl(30 80% 92%) 100%);
+  }
+  .text-gradient-coral {
+    background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(16 85% 40%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-sunset {
+    background: linear-gradient(140deg, hsl(25 96% 53%) 0%, hsl(14 82% 45%) 52%, hsl(9 75% 40%) 100%);
+  }
+
+  .glass-panel {
+    background: hsl(0 0% 100% / 0.68);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(0 0% 100% / 0.52);
+  }
+
+  .soft-surface {
+    background:
+      linear-gradient(165deg, hsl(0 0% 100% / 0.92) 0%, hsl(33 80% 97% / 0.9) 100%);
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+      0 10px 25px hsl(20 80% 38% / 0.08),
+      0 1px 0 hsl(0 0% 100% / 0.95) inset;
+  }
+
+  .hover-lift {
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 38px hsl(19 80% 35% / 0.16);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(hsl(22 50% 55% / 0.08) 0.45px, transparent 0.45px);
+    background-size: 4px 4px;
+    opacity: 0.45;
+  }
+
+  .hero-grid-overlay {
+    background-image:
+      linear-gradient(to right, hsl(25 40% 70% / 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(25 40% 70% / 0.15) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+    mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+  }
+
+  .hero-blob {
+    position: absolute;
+    z-index: -10;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .pulse-ring {
+    position: relative;
+  }
+
+  .pulse-ring::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: inherit;
+    border: 2px solid hsl(var(--primary) / 0.2);
+    animation: pulse-ring 2.2s ease-out infinite;
+  }
+
+  .hero-blob-left {
+    left: -7rem;
+    top: -4rem;
+    width: 18rem;
+    height: 18rem;
+    background: radial-gradient(circle at 30% 30%, hsl(25 95% 53%), hsl(16 85% 40%));
+    animation: blob-float-left 10s ease-in-out infinite;
+  }
+
+  .hero-blob-right {
+    right: -7rem;
+    bottom: -4rem;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle at 70% 70%, hsl(25 95% 53%), hsl(16 85% 40%));
+    animation: blob-float-right 12s ease-in-out infinite;
+  }
+
+  @keyframes blob-float-left {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(1.2rem, 1rem, 0) scale(1.05);
+    }
+  }
+
+  @keyframes blob-float-right {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-1rem, -1.2rem, 0) scale(1.06);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1.08);
+      opacity: 0;
+    }
+  }
+}
